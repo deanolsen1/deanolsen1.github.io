@@ -16,13 +16,16 @@
 
 <link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.css' rel='stylesheet' />
 <link rel="stylesheet" href="css/multiple-select.css"/>
-<link rel="stylesheet" href="css/style.css"/>
+<link rel="stylesheet" href="css/satstyle.css"/>
+<link rel="stylesheet" href="css/lightbox.css"/>
 
 <script src='js/jquery.js'></script> 
 <script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.js'></script>
 <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 <script src='js/jquery.multiple.select.js'></script>
-<script src='js/main.js'></script>
+<script src='js/satmain.js'></script>
+<script src="lib/lightbox.min.js"></script>
+
 <!-- Dean: Added closing header tag -->
 </head>
 
@@ -34,15 +37,16 @@
         <ul>
             <li class="index"><a href="index.html">Introduction</a></li>
             <li class="map"><a href="map.html">Interactive Map</a></li>
-             <li class="satmap"><a href="satmap.html">Satellite Interactive Map</a></li>
-            <li class="credits"><a href="credits.html">Credits</a></li>        </ul>
+             <li class="satmap"><a href="satmap.html">Naked City Maps</a></li>
+            <li class="credits"><a href="credits.html">Credits</a></li>
+        </ul>
         </div>
     </header>
 
     <div id="banner">
         <img src="img/arch_cropped.png" alt=""/>
         <!-- Dean: anglisized name -->
-        <h1>Interactive Map of <br>
+        <h1>&ldquo;<a href="img/naked_city.jpg" data-lightbox="image-1" data-title="<center><i>The Naked City:</i> Debord's 1957 Map of Paris">Naked City</a>&rdquo; Maps of <br>
           Clerc&#8217;s 10th Arrondissement</h1>
     </div>
     
@@ -77,18 +81,6 @@
 
     <div id='leaflet-bottom leaflet-left'></div>
 
-    <!--vcr controls-->
-    <div id="vcr-controls">
-        <!-- <a class="title">Control Timeline<br></a> -->
-        <a class="vcr back-full"><img src="img/skip-back.png" alt="back full"/></a>
-        <a class="vcr back"><img src="img/step-back.png" alt="back"/></a>
-        <a class="vcr play"><img src="img/play.png" alt="play"/></a>
-        <a class="vcr pause"><img src="img/pause.png" alt="pause"/></a>
-        <a class="vcr step"><img src="img/step-ahead.png" alt="forward"/></a>
-        <a class="vcr step-full"><img src="img/skip-full.png" alt="step full"/></a>
-        <a class="vcr faster"><img src="img/faster.png" alt="Increase Speed"/></a>
-        <a class="vcr slower"><img src="img/slower.png" alt="Decrease Speed"/></a>
-    </div>
 
 
 </body>

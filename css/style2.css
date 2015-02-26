@@ -2,24 +2,30 @@
 
 @charset "utf-8";
 
+.clr {
+	clear:both;
+}
+
+
 /*Many elements are set to an initial "hidden" so that
 js can fade them in*/
 .nav {
-  visibility: hidden;
+	visibility: hidden;
 }
 
 .nav ul {
   list-style: none;
   background-color: rgba(58,55,55,.2);
   text-align: center;
-  padding: 0;
-  margin-top: -40px;
-  margin-right: 32%;
-  margin-left: 32%;
+  padding-right: 20px;
+  padding-left: 20px;
+  margin-top: -3%;
+  margin-right: 25%;
+  margin-left: 25%;
 }
 
 .nav li {
-  font-family: arapey;
+  font-family: Arial, sans-serif;
   font-size: 1em;
   line-height: 40px;
   height: 40px;
@@ -30,7 +36,7 @@ js can fade them in*/
   text-decoration: none;
   color: #ffffff;
   display: block;
-  transition: .3s background-color;
+  transition: .5s background-color;
 }
  
 .nav a:hover {
@@ -51,22 +57,24 @@ js can fade them in*/
     margin-left: 10px;
   }
 
+
 /*entire page*/
 body {
-	background-color: #E8E6E1;
 	width: 100%;
-	font-family: arapey;
 	color: #574B4D;
 	font-family: arapey;
 	margin-left: 3%;
 	margin-top: 3%;
 	margin-right: 3%;
 	margin-bottom: 3%;
+	background-size: contain;
+	font-style: normal;
+	font-weight: 400;
 }
 
 /*narrative text*/
 body p {
-	font-size: 18pt;
+	font-size: 14pt;
 	line-height: 130%;
 	color: #403E3E;
 	margin-right: 300px;
@@ -77,19 +85,22 @@ body p {
 	padding-bottom: 10px;
 	padding-left: 10px;
 	visibility: hidden;
+	font-family: arapey;
+	font-style: normal;
+	font-weight: 400;
 }
 
 img {
 	float:left;
-	width: 48%;
+	width: 775px;
 	visibility: hidden;
 }
 
 h1 {
-	font-family: arapey;
+	font-family: Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif, arapey, de-walpergens-pica, droid-serif, quattrocento-sans;
 	font-style: normal;
 	font-weight: 400;
-	font-size: 40pt;
+	font-size: 30pt;
 	text-decoration: none;
 	color: #675A5A;
 	clear: none;
@@ -102,25 +113,11 @@ h1 {
 	visibility: hidden;
 }
 
-/*"Go to Map" link at bottom*/
-h2 a {
-	text-decoration: underline;
-	font-family: arapey;
-	font-style: normal;
-	font-weight: 500;
-	font-size: 40pt;
-	color: #783745;
-	font-size: 48pt;
-	padding: 0px;
-	width: 100%;
-	text-align: center;
-}
-
 /*changes color of book's title*/
 .title {
 	color: #783745;
-	font-weight: 500;
-	font-size: 42pt;
+	font-weight: 400;
+	font-size: 33pt;
 }
 
 #link {
@@ -131,22 +128,13 @@ h2 a {
 /*colors text about the map*/
 .emphasis {
 	color: #8C2A3F;
-	font-weight: 500;
-	font-size: 18pt;
 	margin-top: -20px;
 }
 
+/*Josh's signature block*/
 .signature {
-	font-size: 18pt;
+	font-size: 16pt;
 	margin-top: -5px;
 	float: left;
 	width: 600px;
-}
-
-.link h2 .link {
-	position: relative;
-	max-width: 400px;
-	margin-bottom: 37px;
-	left: 102px;
-	bottom: 25px;
 }
