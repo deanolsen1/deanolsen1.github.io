@@ -8,14 +8,14 @@
 	
 	var iBodyWidth = $("body").width();
 	var iBodyHeight = $("body").height();
-	var iMenuOffset = 0;
+	var iMenuOffset = 40;
 	var iSubMenuOffset = 151;
-	var iVCRHeight = 49;
-	var iVCROffset = 60;
+	//var iVCRHeight = 49;
+	//var iVCROffset = 60;
 	
 	$("#map").height($("body").height() - $("#map").offset().top);
 	$("#menu").height($("#map").height() - iMenuOffset);
-	$("#vcr-controls").css("top",($("#map").offset().top + $("#map").height()- iVCRHeight -iVCROffset) + "px")
+	//$("#vcr-controls").css("top",($("#map").offset().top + $("#map").height()- iVCRHeight -iVCROffset) + "px")
 	$("#SubjectiveMarkers").height($("#menu").height() - iSubMenuOffset);
 	map.invalidateSize();
 }
@@ -32,15 +32,15 @@ $(document).ready(function() {
 
     var map = L.mapbox.map('map', 'deanolsen1.laf3g5ko', 
     	{	zoomControl : false, 
-    		opacity: 0.3,
+    		opacity: 1.0,
 	    	attributionControl: false});
 
-       	map.setView([48.876, 2.357], 15);
+       	map.setView([48.881, 2.358], 15);
 		
 	//Setup and initialize dynamic document resize functionality
 	//In lieu of a better solution - the margin and removal is a hack to keep the vcr looking nice
 
-	$(window).resize(function () { $("#temporal-legend").css("margin-right","0px"); SizeMe(map) });
+	$(window).resize(function () { $("#sliderContainer").css("margin-right","0px"); $("#temporal-legend").css("margin-right","0px"); SizeMe(map) });
 	 SizeMe(map);
 
 
@@ -48,15 +48,13 @@ $(document).ready(function() {
  //    new L.Control.Zoom({ position: 'topright' }).addTo(map);
 
     //load json data onto basemap; create tools
-	$.getJSON("data/Locationsv4.geojson")
+	$.getJSON("data/Locationsfrench.geojson")
 		.done(function(data) {
-
 			var info = processData(data);
 			createPropSymbols(info, data);
 			createSliderUI(info.pages, info, data);
             menuSelection(info.SMs, info, data);
             updateMenu(info, data);
-            sequenceInteractions(info, data);
 		})
 		.fail(function() { alert("There has been a problem loading the data.")});
 
@@ -64,16 +62,15 @@ $(document).ready(function() {
 	function menuSelection(SMs, info, data) {
         var SMOptions = [];
         for (var index in SMs) {
-            SMOptions.push("<input type=\"checkbox\" name=\"SMFilter\" value=\""+ SMs[index] +"\">" + SMs[index] + "<br><i>&nbsp; &nbsp; &nbsp;&#40;cited " + info.SMCount[SMs[index]] + " times&#41;</i>" + "</input>");
+            SMOptions.push("<input type=\"checkbox\" name=\"SMFilter\" value=\""+ CleanFName(SMs[index]) +"\">" + SMs[index] + "&nbsp;&#40;" + info.SMCount[SMs[index]] + "&#41;" + "</input>");
         };
+        SMOptions.sort();
+
 
         //everytime click on the option, trigger the update Menu function
         $("#SubjectiveMarkers").html(SMOptions.join("<br />"));
-        $("#SubjectiveMarkers").on("click", function(event) {
+        $("#SubjectiveMarkers input").on("click", function(event) {
             updateMenu(info, data);
-            	$(".pause").hide();
-				$(".play").show();
-				stopMap(info, data);
         });
 
 		//selectall/ unselectall botton
@@ -82,9 +79,6 @@ $(document).ready(function() {
                 this.checked = true;                        
             });
             updateMenu(info, data);
-            	$(".pause").hide();
-				$(".play").show();
-				stopMap(info, data);
         });
 
         $("#uncheckAllBtn").click(function(event) {   
@@ -97,7 +91,7 @@ $(document).ready(function() {
 		//change map view to match initial view above. function to reset map view when button is clicked - center on 10th Arron.
 
 		$("#resetMapBtn").click(function(event) {   
-            map.setView([48.876, 2.360], 15);
+            map.setView([48.881, 2.358], 15);
         	});
     }
 
@@ -105,16 +99,17 @@ $(document).ready(function() {
     function updateMenu(info, data){
        	SMFilter = [];
        	$( "input:checkbox[name=SMFilter]:checked").each(function(){
-           SMFilter.push($(this).val());
+           SMFilter.push(CleanFName($(this).val()));
        	});
 
 		//Remove old map info
 		$( "input:checkbox[name=SMFilter]").not(":checked").each(function(){
 			//console.log($(this).val());
+			//console.log(CleanFName($(this).val()));
 			$("." + CleanFName($(this).val())).remove();
        	});
 
-		$("#checkedNum").html(SMFilter.length + " categories are checked")		
+		$("#checkedNum").html(SMFilter.length + " categories are checked <br>( ) = number of times cited")		
         createPropSymbols(info, data);
     }
 
@@ -173,16 +168,16 @@ $(document).ready(function() {
 	}
 	
 	function GetZOb(f){
-		console.log(f);
+		//console.log(f);
 		f.latlng =  new L.LatLng(f.target._animateToCenter.lat,f.target._animateToCenter.lng)
 		$.extend(f,map.latLngToContainerPoint(f.latlng));
 		return f;
 	}
 	
     //function to create symbols
-    function createPropSymbols(info, data, currentPage, speed,isVCR) {
-        console.log(info)
-        console.log(data)
+    function createPropSymbols(info, data, currentPage, speed,isVCROrSlider) {
+        //console.log(info)
+        //console.log(data)
 		
 
         if (map.hasLayer(markers)){
@@ -190,9 +185,9 @@ $(document).ready(function() {
         	};
 			
 		//if we are playing we should only show one at a time;
-		// if(isVCR) {
-		// 	$("#dvAllMyZooms").empty();
-		// }
+	    if(isVCROrSlider) {
+		 	$("#dvAllMyZooms").empty();
+		}
 		
 		//For bounding later
 		var arrCoord = [];
@@ -208,7 +203,7 @@ $(document).ready(function() {
 					return false;
 					}
 			} else {
-				if ($.inArray(feature.properties.SM,SMFilter) !== -1) {  
+				if ($.inArray(CleanFName(feature.properties.SM),SMFilter) != -1) {  
                    return true;
             } else {
 					return false;
@@ -239,7 +234,7 @@ $(document).ready(function() {
 						var idM = "zoommap" + iZoomNum++;
 						
 						//append html
-						$("#dvAllMyZooms").append("<div id='"+idZ+"' class='zoomlens "+CleanFName(fName )+" overlay'><div id='"+idO+"' class='overlay rotater'><div class='overlay rotater'><div id='"+idM+"' class='zoommap overlay'></div></div></div><div id='border' class='overlay'></div></div>");
+						$("#dvAllMyZooms").append("<div id='"+idZ+"' class='zoomlens "+fName+" overlay'><div id='"+idO+"' class='overlay rotater'><div class='overlay rotater'><div id='"+idM+"' class='zoommap overlay'></div></div></div><div id='border' class='overlay'></div></div>");
 		
 						//grab on page object
 						var oZlens = document.getElementById(idZ);
@@ -251,7 +246,7 @@ $(document).ready(function() {
 							clickable: false,
 							attributionControl: false,
 
-						}).setView([48.876, 2.357], 15);
+						}).setView([48.881, 2.358], 15);
 						map.dragging.disable();
 						map.touchZoom.disable();
 						map.doubleClickZoom.disable();
@@ -321,7 +316,18 @@ $(document).ready(function() {
 
     //marker size, popup
     function updatePropSymbols() {
+		//console.log(L);
+		//$.each(L.control.layers(),function(i,Layer){
+		//	console.log(Layer);
+		//});
+		//console.log(map);
+		//console.log(map._controlContainer);
+		/*$.each(map.control.layers(),function(i,Layer){
+			console.log(Layer);
+		});*/
+		//bringToFront()
 		markers.eachLayer(function(layer) {
+			console.log(layer);
 			// var props = layer.feature.properties;
 			// size of circle markers
 			// var	radius = 500;
@@ -336,7 +342,8 @@ $(document).ready(function() {
 
     //create the page timeline, chronological order of events
 	function createSliderUI(Pages, info, data) {
-		var sliderControl = L.control(
+
+		/*var sliderControl = L.control(
 			//move slider to bottom right
 			{ position: 'bottomright'} );
 
@@ -344,24 +351,54 @@ $(document).ready(function() {
 			var slider = L.DomUtil.create("input", "range-slider");
 			L.DomEvent.addListener(slider, 'mousedown', function(e) {
 				L.DomEvent.stopPropagation(e);
+				L.DomEvent.disableClickPropagation(e);
 			});
 
-			$(slider)
-				.attr({'type':'range', 
+			$(slider).attr({'type':'range', 
                        'max': Pages[Pages.length-1], 
                        'min':Pages[0], 
                        'step': 1,
 					   'width' : 4,
-                       'value': String(Pages[0])})
-
-		        .on('input change', function() {
-					createPropSymbols(info, data, this.value);
+                       'value': String(Pages[0])});
+					   
+			$(slider).css("width","300px")
+					   
+			$(slider).on('input change', function(e) {
 					//text for slider bar
-		            $(".temporal-legend").text("On page " + this.value);
-		        });
+		            $(".temporal-legend").text("on page " + this.value);
+		        });	 
+				
+			$(slider).on('change', function(e) {
+				    createPropSymbols(info, data, this.value,null,true);
+					//text for slider bar
+		            $(".temporal-legend").text("on page " + this.value);
+		        });	   
 			return slider;
 		}
-		sliderControl.addTo(map);
+		sliderControl.addTo(map);*/
+		var slider = $("#mySlider");
+					$(slider).attr({'type':'range', 
+                       'max': Pages[Pages.length-1], 
+                       'min':Pages[0], 
+                       'step': 1,
+					   'width' : 4,
+                       'value': String(Pages[0])});
+					   
+			$(slider).css("width","500px")
+					   
+			$(slider).on('input change', function(e) {
+					//text for slider bar
+		            $(".temporal-legend").text("on page " + this.value);
+		        });	 
+				
+			$(slider).on('change', function(e) {
+				    createPropSymbols(info, data, this.value,null,true);
+					//text for slider bar
+		            $(".temporal-legend").text("on page " + this.value);
+		        });	 
+		
+		
+		
 		createTemporalLegend(Pages [0]);
 	} 
 
@@ -376,38 +413,8 @@ $(document).ready(function() {
 			return output;
 		}
 		temporalLegend.addTo(map);
-		$(".temporal-legend").text("On page " + startTimestamp);
+		$(".temporal-legend").text("on page " + startTimestamp);
 	}	// end createTemporalLegend()
-
-	// magnifier glass experiment
-
-	var zl = document.getElementById('zoomlens');
-
-	var zoommap = L.mapbox.map('zoommap', 'deanolsen1.l6h0h2j6', {
-    fadeAnimation: false,
-    zoomControl: false,
-    clickable: false,
-    attributionControl: false
-	}).setView([48.876, 2.357], 15);
-
-	// Call update or zoom functions when
-	// these events occur.
-	// map.on('click', update);
-	// map.on('zoomend', zoom);
-
-	// function zoom(e) {
-	//     if (zoommap._loaded) zoommap.setZoom(map.getZoom());
-	// }
-
-	function update(e) {
-		//console.log(e);
-	   // zl.style.top = e.containerPoint.y - 100 + 'px';
-	   // zl.style.left = e.containerPoint.x - 100 + 'px';
-	    // zl.style.top = (e.containerPoint.y -10)  + 'px';
-	    // zl.style.left = (e.containerPoint.x - 10) + 'px';
-	    zoommap.setView(e.latlng, map.getZoom(15), true);
-	}
-
 });
 //end code
 

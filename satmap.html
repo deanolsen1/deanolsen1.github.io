@@ -28,31 +28,24 @@
 
 <!-- Dean: Added closing header tag -->
 </head>
-
-
 <body>
-
     <header>
         <div class="nav">
         <ul>
             <li class="index"><a href="index.html">Introduction</a></li>
-            <li class="map"><a href="map.html">Interactive Map</a></li>
+            <li class="map"><a href="map.html">Subjective Marker Maps</a></li>
              <li class="satmap"><a href="satmap.html">Naked City Maps</a></li>
             <li class="credits"><a href="credits.html">Credits</a></li>
         </ul>
         </div>
     </header>
-
     <div id="banner">
-        <img src="img/arch_cropped.png" alt=""/>
+        <img src="img/rev_arch_cropped.png" alt="Image of an arch in the 10th Arrondissement"/>
         <!-- Dean: anglisized name -->
-        <h1>&ldquo;<a href="img/naked_city.jpg" data-lightbox="image-1" data-title="<center><i>The Naked City:</i> Debord's 1957 Map of Paris">Naked City</a>&rdquo; Maps of <br>
-          Clerc&#8217;s 10th Arrondissement</h1>
+        <h1>Clerc&#8217;s Subjective Markers<br><a href="img/naked_city.jpg" data-lightbox="image-1" data-title="<center><i>The Naked City:</i> Debord's 1957 Map of Paris">Naked City</a> Maps</h1>
     </div>
-    
     <div id="menu">
         <h2>Subjective Markers</h2>
-
         <button id = "checkAllBtn" class= "button">Check All</button>
         <button id = "uncheckAllBtn" class= "button">Uncheck All</button>
         <button id = "resetMapBtn" class= "button">Reset Map</button>
@@ -62,27 +55,12 @@
         <div id="SubjectiveMarkers" class="scroll">
         </div>
     </div>
-
-    <div id='map'>
-    </div>
-    <!-- Magnifier Glass components -->   
-    <div id='zoomlens' class='overlay'>
-        <div class='overlay rotater'>
-            <div class='overlay rotater'>
-                <div id='zoommap' class='overlay'></div>
-            </div>
-        </div>
-        <div id='border' class='overlay'></div>
-    </div>
+    <div id='map'></div>
+	<div class="clr"></div>
     <div id="dvAllMyZooms"></div>
-<!-- End magnifier components -->
-
-
-
-    <div id='leaflet-bottom leaflet-left'></div>
-
-
-
+	<div id="sliderContainer">
+		<input class="range-slider leaflet-control" width="4" id="mySlider">
+	</div>
 </body>
 
 </html>

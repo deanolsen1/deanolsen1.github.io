@@ -3,15 +3,15 @@
 <html>
     
 <head>
-<meta charset="utf-8"/>
-<!-- Dean: Added Arch icon to tab -->
+<meta charset="UTF-8">
+<!-- Dean: Added Arch icon to tab
 <link rel="shortcut icon" href="img/arch_cropped2.png">
-<!-- Dean: Added "Map" and aglicized nameto tab -->
-<title>10th Arrondissement Map</title>
+<title>SM Maps</title>
     
 <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 
-<!--The following script tag downloads a font from the Adobe Edge Web Fonts server for use within the web page. We recommend that you do not modify it.--><script>var __adobewebfontsappname__="dreamweaver"</script><script src="http://use.edgefonts.net/arapey:n4:default;de-walpergens-pica:n4:default;averia-libre:n4:default;english:n4:default;monsieur-la-doulaise:n4:default;special-elite:n4:default;averia-sans-libre:n4:default;homemade-apple:n4:default.js" type="text/javascript"></script>
+<!--The following script tag downloads a font from the Adobe Edge Web Fonts server for use within the web page. We recommend that you do not modify it.-->
+<script>var __adobewebfontsappname__="dreamweaver"</script><script src="http://use.edgefonts.net/arapey:n4:default;de-walpergens-pica:n4:default;averia-libre:n4:default;english:n4:default;monsieur-la-doulaise:n4:default;special-elite:n4:default;averia-sans-libre:n4:default;homemade-apple:n4:default.js" type="text/javascript"></script>
 
 
 <link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.css' rel='stylesheet' />
@@ -31,23 +31,24 @@
 
     <header>
         <div class="nav">
-        <ul>
-            <li class="index"><a href="index.html">Introduction</a></li>
-            <li class="map"><a href="map.html">Interactive Map</a></li>
-             <li class="satmap"><a href="satmap.html">Satellite Interactive Map</a></li>
-            <li class="credits"><a href="credits.html">Credits</a></li>        </ul>
+            <ul>
+                <li class="index"><a href="index.html">Introduction</a></li>
+                <li class="map"><a href="map.html">Subjective Marker Maps</a></li>
+                <li class="satmap"><a href="satmap.html">Naked City Maps</a></li>
+                <li class="credits"><a href="credits.html">Credits</a></li> 
+            </ul>      
         </div>
     </header>
 
     <div id="banner">
-        <img src="img/arch_cropped.png" alt=""/>
+        <img src="img/rev_arch_cropped.png" alt="Image of an arch in the 10th Arrondissement"/>
         <!-- Dean: anglisized name -->
-        <h1>Interactive Map of <br>
-          Clerc&#8217;s 10th Arrondissement</h1>
+        <h1>Clerc&#8217;s Subjective Markers<p class=emphasis>Interactive Map</p> 
+          </h1>
     </div>
     
     <div id="menu">
-        <h2>Subjective Markers</h2>
+        <h2>Bornes de Clerc</h2>
 
         <button id = "checkAllBtn" class= "button">Check All</button>
         <button id = "uncheckAllBtn" class= "button">Uncheck All</button>
@@ -75,7 +76,8 @@
 
 
 
-    <div id='leaflet-bottom leaflet-left'></div>
+    <div id='leaflet-bottom leaflet-left'>
+    </div>
 
     <!--vcr controls-->
     <div id="vcr-controls">

@@ -20,20 +20,18 @@
 //Fade-ins on opening
 
 $(document).ready(function() {
-	$('img').css({opacity: 0.0, visibility: "visible"}).animate({opacity: 1.0}, 3000);
+	$('img').css({opacity: 0.0, visibility: "visible"}).animate({opacity: 1.0}, 500);
 });
 
 $(document).ready(function() {
-	$('h1').css({opacity: 0.0, visibility: "visible"}).animate({opacity: 1.0}, 4000);
+	$('h1').css({opacity: 0.0, visibility: "visible"}).animate({opacity: 1.0}, 500);
 });
 
 $(document).ready(function() {
-	$('body p').css({opacity: 0.0, visibility: "visible"}).animate({opacity: 1.0}, 6000);
+	$('body p').css({opacity: 0.0, visibility: "visible"}).animate({opacity: 1.0}, 500);
 });
 
+
 $(document).ready(function() {
-	$('.link').css({opacity: 0.0, visibility: "visible"}).animate({opacity: 1.0}, 6000);
-});
-$(document).ready(function() {
- 	$('.nav').css({opacity: 0.0, visibility: "visible"}).animate({opacity: 1.0}, 6000);
+ 	$('.nav').css({opacity: 0.0, visibility: "visible"}).animate({opacity: 1.0}, 500);
  });

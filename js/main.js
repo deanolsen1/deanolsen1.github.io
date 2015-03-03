@@ -7,10 +7,10 @@
 	
 	var iBodyWidth = $("body").width();
 	var iBodyHeight = $("body").height();
-	var iMenuOffset = 0;
+	var iMenuOffset = 40;
 	var iSubMenuOffset = 151;
 	var iVCRHeight = 49;
-	var iVCROffset = 60;
+	var iVCROffset = 20;
 	
 	$("#map").height($("body").height() - $("#map").offset().top);
 	$("#menu").height($("#map").height() - iMenuOffset);
@@ -49,13 +49,16 @@ $(document).ready(function() {
      //  window.setTimeout (function () {
      //   	map.setView([48.876, 2.357], 15)}, 6000);
       //uncomment following line for non-zoomed map view
-       	map.setView([48.876, 2.357], 15);
+       	map.setView([48.874, 2.358], 15);
 
 	// extra way of zooming in -- has plus button and minus button for zooming
     new L.Control.Zoom({ position: 'topright' }).addTo(map);
+	
+	$(window).resize(function () { $("#sliderContainer").css("margin-right","0px"); $("#temporal-legend").css("margin-right","0px"); SizeMe(map) });
+	 SizeMe(map);
 
     //load json data onto basemap; create tools
-	$.getJSON("data/Locationsv4.geojson")
+	$.getJSON("data/Locationsfrench.geojson")
 		.done(function(data) {
 
 			var info = processData(data);
@@ -70,9 +73,12 @@ $(document).ready(function() {
     //dynamically created checkbox options with the number of markers after the option
 	function menuSelection(SMs, info, data) {
         var SMOptions = [];
+        SMOptions.sort();
         for (var index in SMs) {
-            SMOptions.push("<input type=\"checkbox\" name=\"SMFilter\" value=\""+ SMs[index] +"\">" + SMs[index] + "<br><i>&nbsp; &nbsp; &nbsp;&#40;cited " + info.SMCount[SMs[index]] + " times&#41;</i>" + "</input>");
+            SMOptions.push("<input type=\"checkbox\" name=\"SMFilter\" value=\""+ CleanFName(SMs[index]) +"\">" + SMs[index] + " &nbsp;&#40;" + info.SMCount[SMs[index]] + "&#41;" + "</input>");
         };
+        SMOptions.sort();
+
 
         //everytime click on the option, trigger the update Menu function
         $("#SubjectiveMarkers").html(SMOptions.join("<br />"));
@@ -104,18 +110,24 @@ $(document).ready(function() {
 		//change map view to match initial view above. function to reset map view when button is clicked - center on 10th Arron.
 
 		$("#resetMapBtn").click(function(event) {   
-            map.setView([48.876, 2.360], 15);
+            map.setView([48.874, 2.358], 15);
         	});
     }
+	
+    function CleanFName(s){
+		//Strip spaces, nonalphanumeric, and make lower
+		return s.replace(/\s/g,"").replace(/[^a-zA-Z 0-9]+/g, '').toLowerCase();
+	}
+	
 
     //Store the checked option in filter, count number of checkbox selection, call createPropSymbols function
     function updateMenu(info, data){
        	SMFilter = [];
        	$( "input:checkbox[name=SMFilter]:checked").each(function(){
-           SMFilter.push($(this).val());
+           SMFilter.push(CleanFName($(this).val()));
        	});
 
-		$("#checkedNum").html(SMFilter.length + " categories are checked")		
+		$("#checkedNum").html(SMFilter.length + " categories are checked <br>(&nbsp;&nbsp;) = number of times cited")		
         createPropSymbols(info, data);
     }
 
@@ -184,7 +196,7 @@ $(document).ready(function() {
 					return false;
 					}
 			} else {
-				if ($.inArray(feature.properties.SM,SMFilter) !== -1) {  
+				if ($.inArray(CleanFName(feature.properties.SM),SMFilter) !== -1) {  
                    return true;
             } else {
 					return false;
@@ -198,7 +210,7 @@ $(document).ready(function() {
                     fillColor: PropColor(feature.properties.SM),
 				    color: '#000000',
                     weight: 2,
-				    fillOpacity: 0.3
+				    fillOpacity: .5
 
                 }).on({
 
@@ -220,68 +232,68 @@ $(document).ready(function() {
 
 	//color of markers
     function PropColor(e) {
-    	return e === "Accidental art object" ? 'rgb(166,206,227)' :
-           e === "Acoustic Image"  ? 'rgb(178,223,138)' :
+    	return e === "Objet d'art involontaire" ? 'rgb(166,206,227)' :
+           e === "Image acoustique"  ? 'rgb(178,223,138)' :
            e === "Ambiance"  ? 'rgb(51,160,44)' :
-           e === "Announcement"  ? 'rgb(251,154,153)' :
+           e === "Annonce"  ? 'rgb(251,154,153)' :
            e === "Antiville"   ? 'rgb(227,26,28)' :
-           e === "Appearance" ? 'rgb(253,191,111)' :
+           e === "Apparition" ? 'rgb(253,191,111)' :
            e === "Archive" ? 'rgb(255,127,0)' :
-           e === "Art sacrificed" ? 'rgb(166,206,227)' :
+           e === "Sacrifice de pi&#232;ce" ? 'rgb(166,206,227)' :
            e === "Attraction" ? 'rgb(202,178,214)' :
            e === "Branding" ? 'rgb(106,61,154)' :
-           e === "Cartography" ? 'rgb(255,255,153)' :
-           e === "Confession" ? 'rgb(177,89,40)' :
+           e === "Cartographie" ? 'rgb(255,255,153)' :
+           e === "Aveu" ? 'rgb(177,89,40)' :
            e === "Configuration" ? 'rgb(141,211,199)' :
-           e === "Conflicting sites" ? 'rgb(255,255,179)' :
+           e === "Site conflictuel" ? 'rgb(255,255,179)' :
            e === "Contact" ? 'rgb(190,186,218)' :
            e === "Danger" ? 'rgb(251,128,114)' :
-           e === "Did you know?" ? 'rgb(128,177,211)' :
-           e === "Future life" ? 'rgb(253,180,98)' :
-           e === "Implicit information" ? 'rgb(179,222,105)' :
+           e === "L'ignoriez-vous? " ? 'rgb(128,177,211)' :
+           e === "Vie future" ? 'rgb(253,180,98)' :
+           e === "Information implicite" ? 'rgb(179,222,105)' :
            e === "Incident" ? 'rgb(252,205,229)' :
-           e === "Incursion into nonfactual world" ? 'rgb(217,217,217)' :
+           e === "Incursion dans le monde contrefactuel" ? 'rgb(217,217,217)' :
            e === "Indications Incarnate" ? 'rgb(188,128,189)' :
            e === "Intervention" ? 'rgb(204,235,197)' :
-           e === "Interzonal comparison" ? 'rgb(255,237,111)' :
+           e === "Comparaison inter-zones" ? 'rgb(255,237,111)' :
            e === "Intrusion" ? 'rgb(141,211,199)' :
-           e === "Local Figure" ? 'rgb(255,255,179)' :
-           e === "Material Esthetics" ? 'rgb(190,186,218)' :
-           e === "Mental Image" ? 'rgb(251,128,114)' :
-           e === "Methodology" ? 'rgb(253,180,98)' :
-           e === "Negative Zone" ? 'rgb(253,180,98)' :
-           e === "Numerophilia" ? 'rgb(179,222,105)' :
-           e === "Optical Illusion" ? 'rgb(252,205,229)' :
+           e === "Figure locale" ? 'rgb(255,255,179)' :
+           e === "Esth&#233;tique Mat&#233;rielle" ? 'rgb(190,186,218)' :
+           e === "Image mentale" ? 'rgb(251,128,114)' :
+           e === "M&#233;thode" ? 'rgb(253,180,98)' :
+           e === "Zone negative" ? 'rgb(253,180,98)' :
+           e === "Numerophilie" ? 'rgb(179,222,105)' :
+           e === "Effet optique " ? 'rgb(252,205,229)' :
            e === "Performance" ? 'rgb(217,217,217)' :
-           e === "Positive Zone" ? 'rgb(188,128,189)' :
-           e === "Previous city" ? 'rgb(204,235,197)' :
-           e === "Previous life" ? 'rgb(255,237,111)' :
-           e === "Prize list" ? 'rgb(141,211,199)' :
-           e === "Procedure" ? 'rgb(255,255,179)' :
-           e === "Program" ? 'rgb(190,186,218)' :
-           e === "Project" ? 'rgb(251,128,114)' :
+           e === "Zone positive" ? 'rgb(188,128,189)' :
+           e === "Ville ant&#233;rieure" ? 'rgb(204,235,197)' :
+           e === "Vie ant&#233;rieure" ? 'rgb(255,237,111)' :
+           e === "Palmar&#232;s" ? 'rgb(141,211,199)' :
+           e === "Proc&#233;dure" ? 'rgb(255,255,179)' :
+           e === "Programme" ? 'rgb(190,186,218)' :
+           e === "Projet" ? 'rgb(251,128,114)' :
            e === "Proposition" ? 'rgb(128,177,211)' :
-           e === "Racial Ambiance" ? 'rgb(253,180,98)' :
-           e === "Rebaptism" ? 'rgb(179,222,105)' :
-           e === "Recent acquisition" ? 'rgb(252,205,229)' :
+           e === "Ambiance raciale" ? 'rgb(253,180,98)' :
+           e === "Rebapt&#234;me" ? 'rgb(179,222,105)' :
+           e === "Acquisition recente" ? 'rgb(252,205,229)' :
            e === "Reconversion" ? 'rgb(217,217,217)' :
            e === "Scene" ? 'rgb(188,128,189)' :
-           e === "Self-reference" ? 'rgb(204,235,197)' :
-           e === "Situational poem" ? 'rgb(255,237,111)' :
-           e === "Social mystery" ? 'rgb(141,211,199)' :
-           e === "Sound art" ? 'rgb(255,255,179)' :
-           e === "Strategy" ? 'rgb(190,186,218)' :
+           e === "Autoref&#233;r&#233;nce" ? 'rgb(204,235,197)' :
+           e === "Po&#232;me de site" ? 'rgb(255,237,111)' :
+           e === "Myst&#232;re social" ? 'rgb(141,211,199)' :
+           e === "Pi&#232;ce sonore" ? 'rgb(255,255,179)' :
+           e === "Strat&#233;gie" ? 'rgb(190,186,218)' :
            e === "Style" ? 'rgb(251,128,114)' :
-           e === "Subtitle" ? 'rgb(128,177,211)' :
-           e === "Synethesia" ? 'rgb(253,180,98)' :
-           e === "Temporary Absorption Activity" ? 'rgb(179,222,105)' :
+           e === "Sous-titre" ? 'rgb(128,177,211)' :
+           e === "Synesth&#233;sie" ? 'rgb(253,180,98)' :
+           e === "Activite d'absorption temporaire" ? 'rgb(179,222,105)' :
            e === "Test" ? 'rgb(252,205,229)' :
-           e === "Theory" ? 'rgb(217,217,217)' :
-           e === "To be blown up" ? 'rgb(188,128,189)' :
-           e === "To be blown up right away" ? 'rgb(204,235,197)' :
-           e === "Trap" ? 'rgb(255,237,111)' :
-           e === "True Zone" ? 'rgb(141,211,199)' :
-           e === "Votive Offering" ? 'rgb(251,128,114)' :
+           e === "Th&#233;orie" ? 'rgb(217,217,217)' :
+           e === "&#192; faire sauter" ? 'rgb(188,128,189)' :
+           e === "&#192; faire sauter d'urgence" ? 'rgb(204,235,197)' :
+           e === "Pi&#232;ge" ? 'rgb(255,237,111)' :
+           e === "Zone de vrai" ? 'rgb(141,211,199)' :
+           e === "Geste votif" ? 'rgb(251,128,114)' :
                       '#FFEDA0';
     }
 
@@ -333,7 +345,7 @@ $(document).ready(function() {
 		        .on('input change', function() {
 					createPropSymbols(info, data, this.value);
 					//text for slider bar
-		            $(".temporal-legend").text("On page " + this.value);
+		            $(".temporal-legend").text("on Page " + this.value);
 		        });
 			return slider;
 		}
@@ -350,7 +362,7 @@ $(document).ready(function() {
 				$(".play").hide();
 				map.setView([48.876, 2.357], 15);
 				clearInterval(interval);
-				speed = 250;
+				speed = 150;
 				animateMap(info, data, speed); 
 				menuSelection(info.SMs, info, data);
 				updateMenu();
@@ -401,7 +413,7 @@ $(document).ready(function() {
 					clearInterval(interval);
 					animateMap(info, data, speed); 
 				}
-				else (speed = 250);
+				else (speed = 150);
 				//extra code to ensure slider data progress at 1/4 second delay 
 				//since initial speed starts at 250, changing by 100 would enable 
 				//user to go outside of the bounds of either increase or decrease 
@@ -441,7 +453,7 @@ $(document).ready(function() {
 		}; 
 		createPropSymbols(info, data, thisPage, speed);
 		$("input[type=range]").val(thisPage);
-		$(".temporal-legend").text( "On Page " + thisPage);
+		$(".temporal-legend").text( "on Page " + thisPage);
 	}
 
 	//function to allow counter and data to increment by one
@@ -449,7 +461,7 @@ $(document).ready(function() {
 		thisPage++; 
 		createPropSymbols(info, data, thisPage, speed);
 		$("input[type=range]").val(thisPage);
-		$(".temporal-legend").text( "On Page " + thisPage);
+		$(".temporal-legend").text( "on Page " + thisPage);
 	}
 	//function to allow counter and data to increment by one
 	function step(info, data, speed){
@@ -458,7 +470,7 @@ $(document).ready(function() {
 			};
 		createPropSymbols(info, data, thisPage,speed);
 		$("input[type=range]").val(thisPage);
-		$(".temporal-legend").text( "On Page " + thisPage);
+		$(".temporal-legend").text( "on Page " + thisPage);
 	}
 
 	//takes the user to the last page (238)
@@ -466,7 +478,7 @@ $(document).ready(function() {
 		thisPage=238; 
 		createPropSymbols(info, data, thisPage);
 		$("input[type=range]").val(thisPage);
-		$(".temporal-legend").text( "On Page " + thisPage);
+		$(".temporal-legend").text( "on Page " + thisPage);
 	}
 
 	//vcr control to first page, pg 9--book starts on pg 9
@@ -474,7 +486,7 @@ $(document).ready(function() {
 		thisPage=9; 
 		createPropSymbols(info, data, thisPage);
 		$("input[type=range]").val(thisPage);
-		$(".temporal-legend").text( "On Page " + thisPage);
+		$(".temporal-legend").text( "on Page " + thisPage);
 	}
 
     //add page number demonstration 
@@ -488,7 +500,7 @@ $(document).ready(function() {
 			return output;
 		}
 		temporalLegend.addTo(map);
-		$(".temporal-legend").text("On page " + startTimestamp);
+		$(".temporal-legend").text("on Page " + startTimestamp);
 	}	// end createTemporalLegend()
 
 

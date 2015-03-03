@@ -28,7 +28,8 @@ body:after {
 .lightbox .lb-image {
   display: block;
   height: auto;
-  max-width: inherit;
+  width: inherit;
+  margin-top: 175px;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   -ms-border-radius: 3px;
@@ -42,8 +43,8 @@ body:after {
 
 .lb-outerContainer {
   position: relative;
-  background-color: white;
-  *zoom: 1;
+/*  background-color: white;
+*/  *zoom: 1;
   width: 100%;
   height: 100%;
   margin: 0 auto;
@@ -54,15 +55,15 @@ body:after {
   border-radius: 4px;
 }
 
-.lb-outerContainer:after {
+/*.lb-outerContainer:after {
   content: "";
   display: table;
   clear: both;
-}
+}*/
 
-.lb-container {
+/*.lb-container {
   padding: 4px;
-}
+}*/
 
 .lb-loader {
   position: absolute;
@@ -167,14 +168,14 @@ body:after {
 }
 
 .lb-data .lb-details {
-  width: 85%;
+  width: 100%;
   float: left;
   text-align: left;
   line-height: 1.1em;
 }
 
 .lb-data .lb-caption {
-  font-size: 13px;
+  font-size: 12pt;
   font-weight: bold;
   line-height: 1em;
 }

@@ -1,5 +1,9 @@
 /*CSS style sheet for credits page*/
 
+@font-face {
+  font-family: Franklin Gothic Heavy;
+  src: url(franklin_gothic_heavy.ttf);
+}
 .clr {
   clear:both;
 }
@@ -9,16 +13,17 @@
   list-style: none;
   background-color: rgba(58,55,55,.2);
   text-align: center;
-  padding-right: 20px;
-  padding-left: 20px;
-  margin-top: -1%;
+  padding-right: 1px;
+  padding-left: 1px;
+  margin-top: -20px;
   margin-right: 25%;
   margin-left: 25%;
 }
 
 .nav li {
-  font-family: arial, sans-serif;
-  font-size: 1em;
+  font-family: arial;
+  font-weight: bolder;
+  font-size: .9em;
   line-height: 40px;
   height: 40px;
   margin-bottom: 0px;
@@ -50,28 +55,34 @@
   }
 
 img {
-    width: 200px;
+    width: 125px;
+    margin-top: -30px;
+    position: absolute;
+    float: left;
     margin-left: 10px;
-    visibility: hidden;
 }
+
     
 h1 {
-	font-family: arial, sans-serif;
-	font-size: 60px;
-	color: #783745;
-  position: relative;
-  margin-top: -250px;
-  margin-bottom: 75px;
-	font-style: normal;
-	font-weight: bold;
-	line-height: 120%;
-  margin-left: 250px;
-  visibility: hidden;
+  font-family: Franklin Gothic Heavy;
+  font-size: 30px;
+  position: absolute;
+  float: right;
+  top: 80px;
+  margin-left: 150px;
+  font-style: normal;
+  line-height: 120%;
+}
+
+h1 .emphasis {
+  color: #783745;
+  margin-top: 0px;
 }
 
 h2 {
-	font-family: arial, sans-serif;
-	font-size: 24pt;
+	font-family: Franklin Gothic Heavy;
+	font-size: 16pt;
+  line-height: 130%;
 	text-align: left;
   width: 80%;
 	margin-bottom: -20px;
@@ -82,8 +93,8 @@ h2 {
 }
 
 body {
-	background-color: #E8E6E1;
 	font-family: arapey;
+  line-height: 130%;
 	font-style: normal;
 	color: #675A5A;
 	padding-top: 10px;
@@ -94,8 +105,9 @@ body {
 }
 
 #text {
-  font-size: 18pt;
-	margin-top: 75px;
+  font-size: 14pt;
+  line-height: 130%;
+	margin-top: 225px;
 	margin-left: 40px;
 	margin-right: 20px;
   visibility: hidden;

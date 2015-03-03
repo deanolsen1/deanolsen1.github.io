@@ -1,5 +1,10 @@
 /*CSS style sheet for map page*/
 
+@font-face {
+font-family: Franklin Gothic Heavy;
+src: url(franklin_gothic_heavy.ttf);
+}
+
 .clr {
 	clear:both;
 }
@@ -10,14 +15,15 @@
   text-align: center;
   padding-right: 20px;
   padding-left: 20px;
-  margin-top: -.5%;
+  margin-top: -8px;
   margin-right: 25%;
   margin-left: 25%;
 }
 
 .nav li {
-  font-family: Arial, sans-serif;
-  font-size: 1em;
+  font-family: arial;
+  font-weight: bold;
+  font-size: .9em;
   line-height: 40px;
   height: 40px;
   margin-bottom: 0px;
@@ -51,19 +57,12 @@
 #vcr-controls {
 	position: absolute;
 	width: 510px;
-    padding: 10px 10px 10px 10px;
+    padding: 10px;
 	z-index: 21;
-	margin-bottom: 0px;
-	right: 35px;
-	top: 1165px;
-	background: rgba(58,55,55,1);
+	right: 30px;
+	top: 940px;
+  	background-color: rgba(58,55,55,.8);
 	border: thin solid #523535;
-}
-
-.title {
-    font-family: arapey;
-    font-size: 18pt;
-    margin-right: 100px;
 }
 
 .vcr img {
@@ -80,22 +79,22 @@
 }
 
 #menu{
-	height: 980px;
-	width: 300px;
+	height: 740px;
+	width: 325px;
 	float: left;
-	margin-left: 32px;
-	margin-top: 20px;
-	top: 225px;
-	font-family: arapey;
-	padding: 5px 5px 5px 5px;
+	margin-left: 30px;
+	margin-top: 60px;
+	top: 180px;
+	font-family: arial;
+	padding: 5px;
 	font-style: normal;
-	font-weight: 400;
-	font-size: 20px;
-    color: #F9F9F9;
+	font-size: 14pt;
+	line-height: 150%;
+    color: #ffffff;
 	position: absolute;
 	left: 1px;
 	z-index: 21;
-	background: rgba(58,55,55,1);
+  	background-color: rgba(58,55,55,.8);
 	border: thin solid #000000;
 }
 
@@ -107,19 +106,15 @@
 
 div.scroll {
 	width: 95%;
-	height: 85%;
+	height: 78%;
 	margin-left: 3px;
 	margin-bottom: 3px;
-	overflow: scroll;
+	overflow-y: scroll;
 	z-index: 10;
-	padding-top: 3px;
-	padding-right: 3px;
-	padding-bottom: 3px;
-	padding-left: 3px;
+	line-height: 140%;
+	padding: 5px;
 	border: thin solid #000000;
-	color: #F7F4F4;
-	font-weight: 500;
-	letter-spacing: normal;
+    color: #FFFFFF;
 }
 
 .checkedNum {
@@ -128,43 +123,51 @@ div.scroll {
 }
 
 #map{
-	height: 1020px;
-	width: 98%;
-	font-family: arapey;
-	font-style: normal;
-	font-weight: 400;
+	position: absolute;
+	height: 800px;
+	width: 97%;
 	border: medium solid #7E5555;
 	z-index: 10;
-	margin-left: 10px;
-	margin-top: -45px;
+	left: 10px;
+	top: 215px;
+	margin: 10px;
 }
 
 /*Arch image at top of page*/
 img {
-    width: 125px;
+	position: relative;
+	margin-top: -40px;
+    width: 150px;
+    opacity: .5;
+    height: 200px;
     margin-left: 10px;
-    margin-top: -30px;
+    float: left;
 }
     
 
 h1 {
-	font-family: arapey;
-	font-size: 60px;
-    position: relative;
-    margin-top: -160px;
-    margin-bottom: 75px;
+	font-family: "Franklin Gothic Heavy";
+	position: absolute;
+	font-size: 30px;
+    margin-top: 70px;
 	font-style: normal;
-	font-weight: 400;
 	line-height: 120%;
-    margin-left: 200px;
+    margin-left: 175px;
+}
+
+/*colors text */
+h1 .emphasis {
+	color: #8C2A3F;
+	margin-top: -5px;
 }
 
 /*"Subjective Marker" in menu box*/
 h2 {
-	font-family: arapey;
-	font-size: 18pt;
+	font-family: Franklin Gothic Heavy;
+	font-weight: bold;
+	font-size: 20pt;
 	text-align: center;
-	color: #F7F4F4;
+    color: #ffffff;
 	margin-bottom: 10px;
 	margin-top: 0px;
 	margin-left: -5px;
@@ -173,10 +176,6 @@ h2 {
 }
 
 body{
-    background-color: #E8E6E1;
-	font-family: arapey;
-	font-style: normal;
-	font-weight: 400;
 	color: #675A5A;
 }
 
@@ -207,31 +206,34 @@ body{
 }
 
 .temporal-legend {
-	font-size: 18pt;
-	font-style: bold;
+	font-size: 12pt;
+	font-family: arial;
 	line-height: 120%;
-	background-color: rgba(58,55,55,.5);/*#6E6564*/
+	background-color: rgba(58,55,55,.8);
 	color: #F7F4F4;
-	padding: 10px 10px 10px 10px;
+	padding: 10px ;
 	width: 150px;
 	text-align: center;
 	float: left;
 	position: relative;
-	bottom: 85px;
+	bottom: 90px;
 	border: thin solid #000000;
 }
+
+
 
 .range-slider {
 	width: 532px;
 	padding-top: 6px 6px 6px 6px;
 	background-color: #C35557;
 	position: relative;
-	bottom: 85px;
+	bottom: 90px;
 }
 
 .leaflet-popup-content-wrapper {
-    font-size: 18pt;
-    background-color: rgba(58,55,55,.7);
+    font-size: 14pt;
+    font-family: arial;
+    background-color: rgba(58,55,55,.8);
     color: #F2ECEB;
     line-height: 110%;
     border: thin solid #000000;
