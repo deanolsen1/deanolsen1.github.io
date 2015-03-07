@@ -210,6 +210,15 @@ h2 {
     transition-timing-function: ease-in;
 }
 
-
+.leaflet-popup-content-wrapper {
+    font-size: 12pt;
+    background-color: rgba(58,55,55,.7);
+    color: #F2ECEB;
+    line-height: 120%;
+    border: thin solid #000000;
+    z-index: 10;
+    height: auto;
+    width: auto;
+}
 
 
