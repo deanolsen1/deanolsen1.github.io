@@ -10,8 +10,8 @@ body:after {
   left: 0;
   z-index: 9999;
   background-color: black;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
-  opacity: 0.8;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
+  opacity: 0.6;
   display: none;
 }
 
@@ -26,6 +26,7 @@ body:after {
 }
 
 .lightbox .lb-image {
+  opacity: 1.0;
   display: block;
   height: auto;
   width: inherit;

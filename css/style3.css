@@ -16,16 +16,16 @@
   padding-right: 1px;
   padding-left: 1px;
   margin-top: -20px;
-  margin-right: 25%;
-  margin-left: 25%;
+  margin-right: 30%;
+  margin-left: 30%;
 }
 
 .nav li {
   font-family: arial;
   font-weight: bolder;
-  font-size: .9em;
-  line-height: 40px;
-  height: 40px;
+  font-size: .7em;
+  line-height: 25px;
+  height: 25px;
   margin-bottom: 0px;
 }
  
@@ -68,10 +68,11 @@ h1 {
   font-size: 30px;
   position: absolute;
   float: right;
-  top: 80px;
+  top: 50px;
   margin-left: 150px;
   font-style: normal;
   line-height: 120%;
+  visibility: hidden;
 }
 
 h1 .emphasis {
@@ -88,32 +89,69 @@ h2 {
 	margin-bottom: -20px;
 	color: #783745;
 	position: relative;
-	font-weight: bold;
+  text-decoration: none;
   visibility: hidden;
 }
 
 body {
-	font-family: arapey;
-  line-height: 130%;
 	font-style: normal;
-	color: #675A5A;
 	padding-top: 10px;
 	padding-right: 20px;
-	padding-bottom: 10px;
 	padding-left: 10px;
-  visibility: hidden;
-}
+  background-color: #E8E8E8;
+/*  visibility: hidden;
+*/}
 
 #text {
   font-size: 14pt;
   line-height: 130%;
-	margin-top: 225px;
+	margin-top: 180px;
 	margin-left: 40px;
 	margin-right: 20px;
-  visibility: hidden;
 }
 
 .link {
 	color: #783745;
+}
+
+.accordion {
+  z-index: 20;
+  margin-right: 6%;
+}
+
+dt {
+    color: black;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 14pt;
+}
+
+dd {
+  border-left: thin solid black;
+  padding: 10px;
+  top:40px;
+}
+
+
+dt a{
+  text-decoration: none;
+  top: 0px;
+  margin-top: -20px;
+}
+
+dd .active {
+  font-size: 14px;
+  color: black;
+}
+
+.accordian a {
+    display: block;
+    color: black;
+    text-decoration: none;
+}
+   
+dd {
+     position: relative;
+     top: 10px;
 }
 

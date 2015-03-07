@@ -9,23 +9,27 @@ src: url(franklin_gothic_heavy.ttf);
 	clear:both;
 }
 
+body {
+	  background-color: #E8E8E8;
+}
+
 .nav ul {
   list-style: none;
   background-color: rgba(58,55,55,.2);
   text-align: center;
-  padding-right: 20px;
-  padding-left: 20px;
+  padding-right: 10px;
+  padding-left: 10px;
   margin-top: -8px;
-  margin-right: 25%;
-  margin-left: 25%;
+  margin-right: 30%;
+  margin-left: 30%;
 }
 
 .nav li {
   font-family: arial;
   font-weight: bold;
-  font-size: .9em;
-  line-height: 40px;
-  height: 40px;
+  font-size: .7em;
+  line-height: 25px;
+  height: 25px;
   margin-bottom: 0px;
 }
  
@@ -56,26 +60,48 @@ src: url(franklin_gothic_heavy.ttf);
 
 #vcr-controls {
 	position: absolute;
-	width: 510px;
+	width: auto;
+	height: auto;
     padding: 10px;
 	z-index: 21;
-	right: 30px;
-	top: 940px;
-  	background-color: rgba(58,55,55,.8);
-	border: thin solid #523535;
+	right: 25px;
+  	background-color: rgba(220,220,220,.7);
+	border: thin solid black;
 }
 
 .vcr img {
 	float: left;
 	margin-right: 10px;
-	width: 48px;
-	height: 48px;
-	padding: 2px 2px 2px 2px;
-	margin-top: -3px;
+	width: 28px;
+	height: 28px;
+	padding: 2px;
 }
 
-.vcr:hover {
-    opacity: .4;
+.temporal-legend {
+	font-size: 11pt;
+	font-family: arial;
+	font-weight: 600;
+	background-color: rgba(220,220,220,.9);
+	color: black;
+	padding: 5px;
+	margin: 5px;
+	width: auto;
+	height: auto;
+	right: 5px;
+	text-align: center;
+	float: left;
+	position: relative;
+	bottom: 90px;
+	border: thin solid #000000;
+}
+
+.range-slider {
+	width: 320px;
+	background-color: rgba(220,220,220,.9);
+	position: absolute;
+	bottom: 70px;
+	right: 5px;
+	margin: 5px;
 }
 
 #menu{
@@ -83,43 +109,53 @@ src: url(franklin_gothic_heavy.ttf);
 	width: 325px;
 	float: left;
 	margin-left: 30px;
-	margin-top: 60px;
-	top: 180px;
+	top: 45px;
 	font-family: arial;
+	font-weight: 600;
 	padding: 5px;
 	font-style: normal;
-	font-size: 14pt;
+	font-size: 11pt;
 	line-height: 150%;
-    color: #ffffff;
+    color: #675A5A;
 	position: absolute;
-	left: 1px;
+	left: -10px;
 	z-index: 21;
-  	background-color: rgba(58,55,55,.8);
-	border: thin solid #000000;
 }
+
+.mheader {
+	color: black;
+  	padding-top: 10px;
+  	padding-left: 10px;
+  	padding-right: 6px;
+  	width: 95%;
+  	background-color: rgba(220,220,220,.9);
+  	border: thin solid #000000;
+}
+
 
 /*"Check" buttons on menu sidebar*/
 .button {
-    margin-right: 4px;
-
+/*    margin-right: 4px;
+*/    text-align: center;
 }
 
 div.scroll {
-	width: 95%;
-	height: 78%;
-	margin-left: 3px;
-	margin-bottom: 3px;
+	width: 97%;
+	height: auto;
 	overflow-y: scroll;
 	z-index: 10;
 	line-height: 140%;
+	font-weight: 600;
 	padding: 5px;
+	background-color: rgba(220,220,220,.9);
 	border: thin solid #000000;
-    color: #FFFFFF;
+    color: black;
 }
 
 .checkedNum {
+	font-size: medium;
 	margin-top: -20px;
-	color: #F9F9F9;
+	color: #675A5A;
 }
 
 #map{
@@ -129,56 +165,25 @@ div.scroll {
 	border: medium solid #7E5555;
 	z-index: 10;
 	left: 10px;
-	top: 215px;
+	top: 35px;
 	margin: 10px;
 }
 
-/*Arch image at top of page*/
-img {
-	position: relative;
-	margin-top: -40px;
-    width: 150px;
-    opacity: .5;
-    height: 200px;
-    margin-left: 10px;
-    float: left;
-}
-    
-
-h1 {
-	font-family: "Franklin Gothic Heavy";
-	position: absolute;
-	font-size: 30px;
-    margin-top: 70px;
-	font-style: normal;
-	line-height: 120%;
-    margin-left: 175px;
-}
-
-/*colors text */
-h1 .emphasis {
-	color: #8C2A3F;
-	margin-top: -5px;
-}
 
 /*"Subjective Marker" in menu box*/
 h2 {
 	font-family: Franklin Gothic Heavy;
 	font-weight: bold;
-	font-size: 20pt;
-	text-align: center;
-    color: #ffffff;
-	margin-bottom: 10px;
-	margin-top: 0px;
-	margin-left: -5px;
-	padding: 5px;
-	width: 273px;
+	font-size: 18pt;
+	text-align: left;
+    color: #675A5A;
+    margin-top: 0px;
 }
 
-body{
+/*body{
 	color: #675A5A;
 }
-
+*/
 .leafletoclickable: hover{
 	width: 5;
 	z-index: 10;
@@ -205,38 +210,6 @@ body{
     transition-timing-function: ease-in;
 }
 
-.temporal-legend {
-	font-size: 12pt;
-	font-family: arial;
-	line-height: 120%;
-	background-color: rgba(58,55,55,.8);
-	color: #F7F4F4;
-	padding: 10px ;
-	width: 150px;
-	text-align: center;
-	float: left;
-	position: relative;
-	bottom: 90px;
-	border: thin solid #000000;
-}
 
 
-
-.range-slider {
-	width: 532px;
-	padding-top: 6px 6px 6px 6px;
-	background-color: #C35557;
-	position: relative;
-	bottom: 90px;
-}
-
-.leaflet-popup-content-wrapper {
-    font-size: 14pt;
-    font-family: arial;
-    background-color: rgba(58,55,55,.8);
-    color: #F2ECEB;
-    line-height: 110%;
-    border: thin solid #000000;
-    z-index: 100;
-}
 
