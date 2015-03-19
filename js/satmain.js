@@ -28,9 +28,9 @@ $(document).ready(function() {
 	var thisPage = 9; //sets the first page of the counter to page 9
 	var interval; //variable that holds several values for info data and speed
 
-    L.mapbox.accessToken = 'pk.eyJ1IjoiZGVhbm9sc2VuMSIsImEiOiJ1dkxBdm9FIn0.kapau_lUukKIE93Y8I0A9g';
+    L.mapbox.accessToken = 'pk.eyJ1Ijoiam9zaHVhLWFybXN0cm9uZyIsImEiOiJZM3dMR3pnIn0.6ZxWqnDdV6s-Tx9F6XKd1w';
 
-    var map = L.mapbox.map('map', 'deanolsen1.laf3g5ko', 
+    var map = L.mapbox.map('map', 'joshua-armstrong.lghag6gh', 
     	{	zoomControl : false, 
     		opacity: 1.0,
 	    	attributionControl: false});
@@ -245,7 +245,7 @@ $(document).ready(function() {
 						var oZlens = document.getElementById(idZ);
 						
 						//Boiler Plate Setup
-						var zmap = L.mapbox.map(idM, 'deanolsen1.l6h0h2j6', {
+						var zmap = L.mapbox.map(idM, 'joshua-armstrong.lgha7h01', {
 							opacity: 1.0,
 							attributionControl: false,
 
