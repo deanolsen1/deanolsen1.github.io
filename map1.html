@@ -3,50 +3,36 @@
 <html>
     
 <head>
-<meta charset="UTF-8">
-<link rel="shortcut icon" href="img/arch_cropped2.png">
-<title>SM Maps</title>
-    
-<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="img/arch_cropped2.png">
+    <title>SM Maps</title>
+        
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 
+    <link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.css' rel='stylesheet' />
+    <link rel="stylesheet" href="css/multiple-select.css"/>
+    <link rel="stylesheet" href="css/map1style.css"/>
 
-
-
-<link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.css' rel='stylesheet' />
-<link rel="stylesheet" href="css/multiple-select.css"/>
-<link rel="stylesheet" href="css/style.css"/>
-
-<script src='js/jquery.js'></script> 
-<script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.js'></script>
-<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-<script src='js/jquery.multiple.select.js'></script>
-<script src='js/main.js'></script>
-<!-- Dean: Added closing header tag -->
+    <script src='js/jquery.js'></script> 
+    <script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.js'></script>
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script src='js/jquery.multiple.select.js'></script>
+    <script src='js/map1.js'></script>
 </head>
 
-
 <body>
-
     <header>
         <div class="nav">
             <ul>
                 <li class="index"><a href="index.html">Introduction</a></li>
-                <li class="map"><a href="map.html">Subjective Marker Maps</a></li>
-                <li class="satmap"><a href="satmap.html">Naked City Maps</a></li>
+                <li class="map"><a href="map1.html">Subjective Marker Maps</a></li>
+                <li class="satmap"><a href="map2.html">Naked City Maps</a></li>
                 <li class="credits"><a href="credits.html">Credits</a></li> 
             </ul>      
         </div>
-    </header>
-
-    <!-- <div id="banner">
-        <img src="img/rev_arch_cropped.png" alt="Image of an arch in the 10th Arrondissement"/>
-        <h1>Clerc&#8217;s Subjective Markers<p class=emphasis>Interactive Map</p> 
-          </h1>
-    </div> -->
-    
+    </header>    
 
     <div id="menu">
-
         <div class="mheader">
             <h2>Clerc&#8217;s Subjective Markers
             <span style= "color:red">Interactive Map</span></h2>
@@ -56,30 +42,15 @@
             <button id = "resetMapBtn" class= "button">Reset Map</button>
             <button id = "minButton" class= "buttonMin">+/-</button>
             <!-- <br></br> -->
-        <p id="checkedNum"></p>
-            
+            <p id="checkedNum"></p>            
         </div>
-        <div id="SubjectiveMarkers" class="scroll" style= "display: none">
-            
+        <div id="SubjectiveMarkers" class="scroll" style= "display: none"> 
         </div>
     </div>
 
     <div id='map'>
     </div>
-    <!-- Magnifier Glass components -->   
-    <div id='zoomlens' class='overlay'>
-        <div class='overlay rotater'>
-            <div class='overlay rotater'>
-                <div id='zoommap' class='overlay'></div>
-            </div>
-        </div>
-        <div id='border' class='overlay'></div>
-    </div>
-    <div id="dvAllMyZooms"></div>
-<!-- End magnifier components -->
-
-
-
+ 
     <div id='leaflet-bottom leaflet-left'>
     </div>
 
@@ -95,8 +66,6 @@
         <a class="vcr faster"><img src="img/faster.png" alt="Increase Speed"/></a>
         <a class="vcr slower"><img src="img/slower.png" alt="Decrease Speed"/></a>
     </div>
-
-
 </body>
 
 </html>

@@ -1,4 +1,4 @@
-//Dean: fade-ins on opening
+//Javascript for Credits page
 
  function SizeMe(map) {
 	//Dynamically Resize Body

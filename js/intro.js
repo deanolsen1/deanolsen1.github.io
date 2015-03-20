@@ -1,4 +1,5 @@
 // Javascript for intro page
+
  function SizeMe(map) {
 	//Dynamically Resize Body
 	$("body").height($(window).outerHeight()-40);

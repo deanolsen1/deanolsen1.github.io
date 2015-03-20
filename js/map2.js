@@ -15,7 +15,6 @@
 	
 	$("#map").height($("body").height() - $("#map").offset().top);
 	$("#menu").height($("#map").height() - iMenuOffset);
-	//$("#vcr-controls").css("top",($("#map").offset().top + $("#map").height()- iVCRHeight -iVCROffset) + "px")
 	$("#SubjectiveMarkers").height($("#menu").height() - iSubMenuOffset);
 	map.invalidateSize();
 }
@@ -42,10 +41,6 @@ $(document).ready(function() {
 
 	$(window).resize(function () { $("#sliderContainer").css("margin-right","0px"); $("#temporal-legend").css("margin-right","0px"); SizeMe(map) });
 	 SizeMe(map);
-
-
-	// // extra way of zooming in -- has plus button and minus button for zooming
- //    new L.Control.Zoom({ position: 'topright' }).addTo(map);
 
     //load json data onto basemap; create tools
 	$.getJSON("data/Locationsfrench.geojson")
@@ -104,8 +99,6 @@ $(document).ready(function() {
 
 		//Remove old map info
 		$( "input:checkbox[name=SMFilter]").not(":checked").each(function(){
-			//console.log($(this).val());
-			//console.log(CleanFName($(this).val()));
 			$("." + CleanFName($(this).val())).remove();
        	});
 
@@ -280,25 +273,9 @@ $(document).ready(function() {
 						//Create Lens
 						updateLens(e)
 						zoomIt(e);	
-						
-						// $("#"+idZ).on({
-						// 	mouseover: function(e) {
-						// 		circle.openPopup();
-						// 	},
-						// 	mouseout: function(e) {
-						// 		circle.closePopup();
-						// 	}
-						// });								
 					};
 					
 			createZoom(e);	
-			
-		
-			/*instead of returning circles (SVG elements),
-			you need to return a div with a unique id attribute
-			that can then be used to create a new L.mapbox.map 
-			(your zoommap)
-			*/
 			return circle;
 				
 		
@@ -306,9 +283,7 @@ $(document).ready(function() {
 			}
 		}).addTo(map);
 		updatePropSymbols();
-		// if(arrCoord.length > 0){
-		// 	map.fitBounds(arrCoord);
-		// }
+		
 	} 	// end createPropSymbols()
 
 
@@ -319,26 +294,10 @@ $(document).ready(function() {
 
     //marker size, popup
     function updatePropSymbols() {
-		//console.log(L);
-		//$.each(L.control.layers(),function(i,Layer){
-		//	console.log(Layer);
-		//});
-		//console.log(map);
-		//console.log(map._controlContainer);
-		/*$.each(map.control.layers(),function(i,Layer){
-			console.log(Layer);
-		});*/
-		//bringToFront()
+
 		markers.eachLayer(function(layer) {
 			console.log(layer);
-			// var props = layer.feature.properties;
-			// size of circle markers
-			// var	radius = 500;
-			// var	popupContent = "<i><b>" + props.SM + "</b></i>" + " <br>"+ props.Address +"<br>page " + props.Page ;
-			// layer.setRadius(radius);
-			// layer.bindPopup(popupContent, { offset: new L.Point(0,10) });
-            // layer.options.color = PropColor(props.SM);
-            // layer.options.fillColor = PropColor(props.SM);
+			
 		});
 	} // end updatePropSymbols
 
@@ -346,39 +305,7 @@ $(document).ready(function() {
     //create the page timeline, chronological order of events
 	function createSliderUI(Pages, info, data) {
 
-		/*var sliderControl = L.control(
-			//move slider to bottom right
-			{ position: 'bottomright'} );
-
-		sliderControl.onAdd = function(map) {
-			var slider = L.DomUtil.create("input", "range-slider");
-			L.DomEvent.addListener(slider, 'mousedown', function(e) {
-				L.DomEvent.stopPropagation(e);
-				L.DomEvent.disableClickPropagation(e);
-			});
-
-			$(slider).attr({'type':'range', 
-                       'max': Pages[Pages.length-1], 
-                       'min':Pages[0], 
-                       'step': 1,
-					   'width' : 4,
-                       'value': String(Pages[0])});
-					   
-			$(slider).css("width","300px")
-					   
-			$(slider).on('input change', function(e) {
-					//text for slider bar
-		            $(".temporal-legend").text("on page " + this.value);
-		        });	 
-				
-			$(slider).on('change', function(e) {
-				    createPropSymbols(info, data, this.value,null,true);
-					//text for slider bar
-		            $(".temporal-legend").text("on page " + this.value);
-		        });	   
-			return slider;
-		}
-		sliderControl.addTo(map);*/
+		
 		var slider = $("#mySlider");
 					$(slider).attr({'type':'range', 
                        'max': Pages[Pages.length-1], 
@@ -397,7 +324,7 @@ $(document).ready(function() {
 			$(slider).on('change', function(e) {
 				    createPropSymbols(info, data, this.value,null,true);
 					//text for slider bar
-		            $(".temporal-legend").text("on page " + this.value);
+		            $("#temporalLegend").text("on page " + this.value);
 		        });	 
 		
 		
@@ -412,11 +339,11 @@ $(document).ready(function() {
 			//position to bottom right
 			{ position: 'bottomright' });
 		temporalLegend.onAdd = function(map) {
-			var output = L.DomUtil.create("output", "temporal-legend");
+			var output = L.DomUtil.create("output", "temporalLegend");
 			return output;
 		}
 		temporalLegend.addTo(map);
-		$(".temporal-legend").text("on page " + startTimestamp);
+		$("#temporalLegend").text("on page " + startTimestamp);
 	}	// end createTemporalLegend()
 });
 //end code
