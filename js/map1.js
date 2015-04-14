@@ -30,9 +30,9 @@ $(document).ready(function() {
 	var interval; //variable that holds several values for info data and speed
 
 
-    L.mapbox.accessToken = 'pk.eyJ1Ijoiam9zaHVhLWFybXN0cm9uZyIsImEiOiJZM3dMR3pnIn0.6ZxWqnDdV6s-Tx9F6XKd1w';
+    L.mapbox.accessToken = 'pk.eyJ1IjoiZGVhbm9sc2VuMSIsImEiOiJ1dkxBdm9FIn0.kapau_lUukKIE93Y8I0A9g';
 
-    var map = L.mapbox.map('map', 'joshua-armstrong.lgh9k565', 
+    var map = L.mapbox.map('map', 'deanolsen1.l4i434a2', 
     	{zoomControl : false, 
     	//removed attribution from bottom of map to credits page
     	attributionControl: false});
