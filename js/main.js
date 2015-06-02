@@ -19,3 +19,35 @@ L.mapbox.featureLayer('data/lmtest1.geojson').on('ready', function(e) {
     });
     map.addLayer(clusterGroup);
 });
+
+var info = document.getElementById('info');
+var map = L.mapbox.map('map', 'mapbox.streets')
+    .setView([37.9, -77], 6);
+
+var myLayer = L.mapbox.featureLayer().addTo(map);
+
+myLayer.setGeoJSON(geoJson);
+
+// Listen for individual marker clicks.
+myLayer.on('click',function(e) {
+    // Force the popup closed.
+    e.layer.closePopup();
+
+    var feature = e.layer.feature;
+    var content = '<div><strong>' + feature.properties.title + '</strong>' +
+                  '<p>' + feature.properties.description + '</p></div>';
+
+    info.innerHTML = content;
+});
+
+// Clear the tooltip when map is clicked.
+map.on('move', empty);
+
+// Trigger empty contents when the script
+// has loaded on the page.
+empty();
+
+function empty() {
+  info.innerHTML = '<div><strong>Click a marker</strong></div>';
+  }
+

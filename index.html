@@ -11,12 +11,24 @@
   #text {position:static;}
   #map { position:absolute;top:2%; bottom:2%; right:2%; left:2%; }
 
+  .info {
+  position:absolute;
+  top:10px;
+  right:10px;
+  }
+  .info div {
+    background:#fff;
+    padding:10px;
+    border-radius:3px;
+    }
+
 </style>
 </head>
 <body>
 
 
     <div id='map'></div>
+    <div id='info' class='info'></div>
 
     <script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/leaflet.markercluster.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.css' rel='stylesheet' />
@@ -33,6 +45,7 @@ var map = L.mapbox.map('map')
 
 // Since featureLayer is an asynchronous method, we use the `.on('ready'`
 // call to only use its marker data once we know it is actually loaded.
+
 L.mapbox.featureLayer('deanolsen1.m93pgn91').on('ready', function(e) {
     // The clusterGroup gets each marker in the group added to it
     // once loaded, and then is added to the map
@@ -42,6 +55,37 @@ L.mapbox.featureLayer('deanolsen1.m93pgn91').on('ready', function(e) {
     });
     map.addLayer(clusterGroup);
 });
+
+
+var info = document.getElementById('info');
+
+var myLayer = L.mapbox.featureLayer().addTo(map);
+
+myLayer.setGeoJSON(geoJson);
+
+// Listen for individual marker clicks.
+myLayer.on('click',function(e) {
+    // Force the popup closed.
+    e.layer.closePopup();
+
+    var feature = e.layer.feature;
+    var content = '<div><strong>' + feature.properties.title + '</strong>' +
+                  '<p>' + feature.properties.description + '</p></div>';
+
+    info.innerHTML = content;
+});
+
+// Clear the tooltip when map is clicked.
+map.on('move', empty);
+
+// Trigger empty contents when the script
+// has loaded on the page.
+empty();
+
+function empty() {
+  info.innerHTML = '<div><strong>Click a marker</strong></div>';
+  }
+
 </script>
 
 
