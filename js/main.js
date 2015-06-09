@@ -6,7 +6,7 @@ L.mapbox.accessToken = 'pk.eyJ1IjoiZGVhbm9sc2VuMSIsImEiOiJ1dkxBdm9FIn0.kapau_lUu
 // backing tileLayer, and then use the featureLayer only for its data.
 var map = L.mapbox.map('map')
     .setView([37.8, -96], 4)
-    .addLayer(L.mapbox.tileLayer('deanolsen1.132d74ee'));
+    .addLayer(L.mapbox.tileLayer('deanolsen1.mdb3fk1n'));
 
 // Since featureLayer is an asynchronous method, we use the `.on('ready'`
 // call to only use its marker data once we know it is actually loaded.
@@ -21,7 +21,7 @@ L.mapbox.featureLayer('data/lmtest1.geojson').on('ready', function(e) {
 });
 
 var info = document.getElementById('info');
-var map = L.mapbox.map('map', 'mapbox.streets')
+var map = L.mapbox.map('map', 'deanolsen1.mdb3fk1n')
     .setView([37.9, -77], 6);
 
 var myLayer = L.mapbox.featureLayer().addTo(map);
